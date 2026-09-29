@@ -65,6 +65,4 @@ middleware.js          → server-side route protection
 
 **One problem I ran into:** the search box firing a new request on every keystroke, and — because network responses don't always come back in the order they were sent — an old response could overwrite a newer one (test this by adding `&delay=2000` to the API base URL in `lib/api/axios.js` temporarily). Fixed with a debounce on the input (450ms) plus an `AbortController` that cancels the previous in-flight request whenever a new one starts, with a request-id check as a second safety net in case an aborted request's `.then` still fires.
 
-## Where AI helped
 
-This project was scaffolded and written with AI assistance (Claude). I can walk through and explain every file — the architecture (shared Axios instance, URL-as-state-source, the local overlay for fake persistence, middleware-based auth) reflects decisions I made about how to satisfy the assignment's specific rules, not just default boilerplate.
